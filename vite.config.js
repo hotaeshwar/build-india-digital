@@ -8,9 +8,10 @@ export default defineConfig({
   server: {
     host: true, // Allows access from other devices
     port: 3001, // Ensure this matches your ngrok port
-    strictPort: true, // Optional, ensures the port doesn't change
+    strictPort: true, // Ensures the port doesn't change
     allowedHosts: [
       ".ngrok-free.app", // Allow ngrok URLs
+      "buildingindiadigital.com", // Allow this specific host
     ],
   },
 });
