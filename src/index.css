@@ -1,0 +1,59 @@
+/* Add this to your index.css to fix the About section specifically */
+
+/* Fix for About section - add padding to the top */
+#about {
+  padding-top: 120px; /* Adjust this value to match your navbar height */
+  margin-top: -120px; /* Same negative value as padding-top */
+}
+
+/* For other sections that might have the same issue */
+#home, #services, #packages, #contact {
+  padding-top: 100px; /* Slightly less for other sections */
+  margin-top: -100px;
+}
+
+/* Alternative approach - if the above creates too much space, use this instead */
+#about .min-h-screen {
+  padding-top: 120px; /* This targets the About component's main container */
+}
+
+/* Or target the hero section specifically */
+#about section:first-child {
+  padding-top: calc(3rem + 100px); /* Original py-12 (3rem) + navbar offset */
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Your existing animations */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 1s ease-out forwards;
+}
