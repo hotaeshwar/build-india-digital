@@ -228,23 +228,23 @@ const Package = () => {
           <div className="w-20 sm:w-24 md:w-32 h-1 bg-gradient-to-r from-green-500 to-orange-500 mx-auto mt-4 sm:mt-6 rounded-full"></div>
         </div>
 
-        {/* Packages Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-12 sm:mb-16 md:mb-20">
+        {/* Packages Grid - Fixed for iPad */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-12 sm:mb-16 md:mb-20">
           
           {/* Gold Package */}
-          <div className="group relative bg-white rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-green-200 overflow-hidden">
-            <div className="bg-gradient-to-r from-green-500 to-green-600 text-white text-center py-4 sm:py-6 relative">
+          <div className="group relative bg-white rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-green-200 overflow-hidden w-full flex flex-col">
+            <div className="bg-gradient-to-r from-green-500 to-green-600 text-white text-center py-4 sm:py-6 relative flex-shrink-0">
               <div className="absolute inset-0 bg-black opacity-10"></div>
               <h2 className="relative text-xl sm:text-2xl md:text-3xl font-bold tracking-wide">GOLD</h2>
               <p className="relative text-green-100 text-sm sm:text-base mt-1">Professional</p>
             </div>
             
-            <div className="text-center py-4 sm:py-6 bg-gradient-to-b from-green-50 to-white">
+            <div className="text-center py-4 sm:py-6 bg-gradient-to-b from-green-50 to-white flex-shrink-0">
               <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600">₹22,500</div>
               <div className="text-sm sm:text-base text-gray-500">per month</div>
             </div>
 
-            <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+            <div className="p-4 sm:p-6 space-y-3 sm:space-y-4 flex-grow">
               {packages.gold.features.slice(0, expandedCards.gold ? packages.gold.features.length : 5).map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3 text-xs sm:text-sm md:text-base">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -263,7 +263,7 @@ const Package = () => {
               </button>
             </div>
 
-            <div className="p-4 sm:p-6 pt-2 sm:pt-4">
+            <div className="p-4 sm:p-6 pt-2 sm:pt-4 flex-shrink-0">
               <a
                 className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center text-sm sm:text-base"
                 href="#contact"
@@ -273,25 +273,25 @@ const Package = () => {
             </div>
           </div>
 
-          {/* Platinum Package */}
-          <div className="relative md:col-span-2 xl:col-span-1">
+          {/* Platinum Package - Fixed positioning */}
+          <div className="relative w-full flex flex-col">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-600 to-orange-600 text-white text-xs sm:text-sm font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg z-20">
               RECOMMENDED
             </div>
             
-            <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border-2 border-orange-300 overflow-hidden mt-6">
-              <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-center py-4 sm:py-6 relative">
+            <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border-2 border-orange-300 overflow-hidden mt-6 w-full flex flex-col h-full">
+              <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-center py-4 sm:py-6 relative flex-shrink-0">
                 <div className="absolute inset-0 bg-black opacity-10"></div>
                 <h2 className="relative text-xl sm:text-2xl md:text-3xl font-bold tracking-wide">PLATINUM</h2>
                 <p className="relative text-yellow-100 text-sm sm:text-base mt-1">Business</p>
               </div>
               
-              <div className="text-center py-4 sm:py-6 bg-gradient-to-b from-yellow-50 to-white">
+              <div className="text-center py-4 sm:py-6 bg-gradient-to-b from-yellow-50 to-white flex-shrink-0">
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-600">₹35,000</div>
                 <div className="text-sm sm:text-base text-gray-500">per month</div>
               </div>
 
-              <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <div className="p-4 sm:p-6 space-y-3 sm:space-y-4 flex-grow">
                 {packages.platinum.features.slice(0, expandedCards.platinum ? packages.platinum.features.length : 5).map((feature, index) => (
                   <div key={index} className="flex items-start space-x-3 text-xs sm:text-sm md:text-base">
                     <div className="w-5 h-5 sm:w-6 sm:h-6 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -310,7 +310,7 @@ const Package = () => {
                 </button>
               </div>
 
-              <div className="p-4 sm:p-6 pt-2 sm:pt-4">
+              <div className="p-4 sm:p-6 pt-2 sm:pt-4 flex-shrink-0">
                 <a
                   className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center text-sm sm:text-base"
                   href="#contact"
@@ -322,19 +322,19 @@ const Package = () => {
           </div>
 
           {/* Diamond Package */}
-          <div className="group relative bg-white rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-orange-200 overflow-hidden md:col-span-2 xl:col-span-1">
-            <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-4 sm:py-6 relative">
+          <div className="group relative bg-white rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-orange-200 overflow-hidden w-full flex flex-col">
+            <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-4 sm:py-6 relative flex-shrink-0">
               <div className="absolute inset-0 bg-black opacity-10"></div>
               <h2 className="relative text-xl sm:text-2xl md:text-3xl font-bold tracking-wide">DIAMOND</h2>
               <p className="relative text-orange-100 text-sm sm:text-base mt-1">Enterprise</p>
             </div>
             
-            <div className="text-center py-4 sm:py-6 bg-gradient-to-b from-orange-50 to-white">
+            <div className="text-center py-4 sm:py-6 bg-gradient-to-b from-orange-50 to-white flex-shrink-0">
               <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-600">₹50,000</div>
               <div className="text-sm sm:text-base text-gray-500">per month</div>
             </div>
 
-            <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+            <div className="p-4 sm:p-6 space-y-3 sm:space-y-4 flex-grow">
               {packages.diamond.features.slice(0, expandedCards.diamond ? packages.diamond.features.length : 5).map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3 text-xs sm:text-sm md:text-base">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -353,7 +353,7 @@ const Package = () => {
               </button>
             </div>
 
-            <div className="p-4 sm:p-6 pt-2 sm:pt-4">
+            <div className="p-4 sm:p-6 pt-2 sm:pt-4 flex-shrink-0">
               <a
                 className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center text-sm sm:text-base"
                 href="#contact"

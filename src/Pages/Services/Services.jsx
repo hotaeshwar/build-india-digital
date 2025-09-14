@@ -94,13 +94,13 @@ const Services = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-orange-50 py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-15">
+    <div className="bg-gradient-to-br from-gray-50 to-orange-50 py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-15">
       {/* Hero Section */}
       <div 
         ref={heroRef}
-        className="max-w-7xl mx-auto px-2 sm:px-4 flex flex-col lg:flex-row items-center gap-8 lg:gap-12"
+        className="max-w-7xl mx-auto px-2 sm:px-3 md:px-4 flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-12"
       >
-        <div className={`w-full lg:w-1/2 p-2 sm:p-4 transition-all duration-1000 ease-out ${
+        <div className={`w-full lg:w-1/2 p-2 sm:p-3 md:p-4 transition-all duration-1000 ease-out ${
           isHeroVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
         }`}>
           <div className="relative group">
@@ -112,18 +112,18 @@ const Services = () => {
             />
           </div>
         </div>
-        <div className={`w-full lg:w-1/2 p-2 sm:p-4 transition-all duration-1000 ease-out delay-300 ${
+        <div className={`w-full lg:w-1/2 p-2 sm:p-3 md:p-4 transition-all duration-1000 ease-out delay-300 ${
           isHeroVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
         }`}>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 md:mb-6">
             Business <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-orange-600">Service</span>
           </h2>
-          <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
+          <p className="mt-2 sm:mt-3 md:mt-4 text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
             We offer a range of digital marketing services to help businesses
             reach their target audience and achieve their marketing goals. Our
             services include:
           </p>
-          <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
+          <p className="mt-2 sm:mt-3 md:mt-4 text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
             Tailored business solutions delivering efficiency, growth, and
             innovation. Strategize, implement, and optimize operations,
             technology, and marketing to propel your business forward.
@@ -131,15 +131,15 @@ const Services = () => {
         </div>
       </div>
       
-      {/* Cards Section */}
-      <div className="py-12 sm:py-16 md:py-20 px-2 sm:px-4 md:px-6 lg:px-10 xl:px-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pt-6 sm:pt-8 lg:pt-10">
+      {/* Cards Section - Enhanced for tablet responsiveness */}
+      <div className="py-8 sm:py-10 md:py-14 lg:py-16 xl:py-20 px-2 sm:px-3 md:px-4 lg:px-6 xl:px-10 2xl:px-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 pt-4 sm:pt-5 md:pt-6 lg:pt-8 xl:pt-10 max-w-7xl mx-auto">
           
           {servicesData.map((service, index) => (
             <div 
               key={index}
               ref={el => cardRefs.current[index] = el}
-              className={`bg-white p-6 sm:p-7 lg:p-8 hover:bg-gradient-to-r hover:from-green-500 hover:to-orange-500 transition-all duration-700 group rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 border border-gray-100 ${
+              className={`bg-white p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 hover:bg-gradient-to-r hover:from-green-500 hover:to-orange-500 transition-all duration-700 group rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 border border-gray-100 w-full min-h-[200px] flex flex-col justify-between ${
                 visibleCards.has(index) 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
@@ -148,15 +148,19 @@ const Services = () => {
                 transitionDelay: visibleCards.has(index) ? `${index * 150}ms` : '0ms'
               }}
             >
-              <h1 className="text-lg sm:text-xl lg:text-[22px] text-green-600 font-semibold group-hover:text-white transition-colors duration-300 mb-3">
-                {service.title}
-              </h1>
-              <p className="py-2 sm:py-3 text-sm sm:text-base text-gray-600 group-hover:text-white transition-colors duration-300 leading-relaxed">
-                {service.description}
-              </p>
-              <a href="#contact" className="inline-block text-green-700 hover:text-green-800 font-semibold text-sm sm:text-base group-hover:text-white transition-colors duration-300 hover:underline">
-                Contact us →
-              </a>
+              <div className="flex-grow">
+                <h1 className="text-base sm:text-lg md:text-xl lg:text-[22px] text-green-600 font-semibold group-hover:text-white transition-colors duration-300 mb-2 sm:mb-3 leading-tight">
+                  {service.title}
+                </h1>
+                <p className="py-1 sm:py-2 md:py-3 text-xs sm:text-sm md:text-base text-gray-600 group-hover:text-white transition-colors duration-300 leading-relaxed flex-grow">
+                  {service.description}
+                </p>
+              </div>
+              <div className="mt-3 sm:mt-4">
+                <a href="#contact" className="inline-block text-green-700 hover:text-green-800 font-semibold text-xs sm:text-sm md:text-base group-hover:text-white transition-colors duration-300 hover:underline">
+                  Contact us →
+                </a>
+              </div>
             </div>
           ))}
 

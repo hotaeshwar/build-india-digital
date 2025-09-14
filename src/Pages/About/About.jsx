@@ -30,17 +30,17 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section - Medium size with navbar offset */}
-      <section className="relative bg-gradient-to-r from-green-600 to-orange-500 pt-28 pb-8 mt-4 overflow-hidden">
+      {/* Hero Section - Small size with navbar offset */}
+      <section className="relative bg-gradient-to-r from-green-600 to-orange-500 pt-24 pb-4 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-5"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className={`text-center transition-all duration-1000 ${
             isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
               About <span className="text-orange-200">Building India Digital</span>
             </h1>
-            <p className="text-lg md:text-xl text-white opacity-90 max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-white opacity-90 max-w-3xl mx-auto">
               Empowering businesses through innovative digital marketing solutions
             </p>
           </div>
