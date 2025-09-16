@@ -54,6 +54,82 @@ const Services = () => {
     };
   }, []);
 
+  // Function to handle smooth scrolling to contact section
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    
+    // Try multiple possible selectors for the contact form/section
+    const contactSelectors = [
+      '#contact',
+      '[id="contact"]',
+      '.contact-section',
+      '.contact-form',
+      'form[class*="contact"]',
+      'div[class*="contact"]',
+      'footer #contact',
+      'footer .contact-section',
+      'footer .contact-form',
+      'footer form',
+      'footer'
+    ];
+    
+    let contactElement = null;
+    
+    for (const selector of contactSelectors) {
+      contactElement = document.querySelector(selector);
+      if (contactElement) break;
+    }
+    
+    if (contactElement) {
+      // For mobile devices, scroll to bottom of page to ensure contact form is visible
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        // On mobile, scroll to the very bottom to ensure form is fully visible
+        const documentHeight = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.clientHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        );
+        
+        // Scroll to bottom with a small offset to account for any sticky elements
+        window.scrollTo({
+          top: documentHeight - 50,
+          behavior: 'smooth'
+        });
+        
+        // Secondary attempt after a delay
+        setTimeout(() => {
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+          });
+        }, 500);
+        
+      } else {
+        // Desktop behavior - scroll to the contact element
+        const navbarHeight = document.querySelector('nav')?.offsetHeight || 0;
+        const offset = navbarHeight + 20;
+        
+        const elementPosition = contactElement.offsetTop - offset;
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
+      
+    } else {
+      // Fallback: scroll to bottom of page
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const servicesData = [
     {
       title: "Internship and Placement",
@@ -157,9 +233,12 @@ const Services = () => {
                 </p>
               </div>
               <div className="mt-3 sm:mt-4">
-                <a href="#contact" className="inline-block text-green-700 hover:text-green-800 font-semibold text-xs sm:text-sm md:text-base group-hover:text-white transition-colors duration-300 hover:underline">
+                <button 
+                  onClick={handleContactClick}
+                  className="inline-block text-green-700 hover:text-green-800 font-semibold text-xs sm:text-sm md:text-base group-hover:text-white transition-colors duration-300 hover:underline cursor-pointer bg-transparent border-none p-0"
+                >
                   Contact us →
-                </a>
+                </button>
               </div>
             </div>
           ))}
