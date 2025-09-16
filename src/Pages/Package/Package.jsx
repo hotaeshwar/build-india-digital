@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { X, Plus, Minus, Phone, Mail, MapPin, Check } from "lucide-react";
 
 const Package = () => {
@@ -8,6 +8,9 @@ const Package = () => {
     platinum: false,
     diamond: false
   });
+  const [visibleCards, setVisibleCards] = useState([]);
+  
+  const cardRefs = useRef([]);
 
   const [customPackage, setCustomPackage] = useState({
     name: '',
@@ -23,6 +26,37 @@ const Package = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Scroll animation logic without Observer API
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      cardRefs.current.forEach((cardRef, index) => {
+        if (cardRef) {
+          const cardTop = cardRef.offsetTop;
+          const cardHeight = cardRef.offsetHeight;
+          
+          // Card becomes visible when it's 70% into the viewport
+          const triggerPoint = scrollY + windowHeight * 0.7;
+          
+          if (triggerPoint > cardTop && !visibleCards.includes(index)) {
+            setVisibleCards(prev => [...prev, index]);
+          }
+        }
+      });
+    };
+
+    // Initial check
+    handleScroll();
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Cleanup
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [visibleCards]);
 
   const packages = {
     gold: {
@@ -228,11 +262,21 @@ const Package = () => {
           <div className="w-20 sm:w-24 md:w-32 h-1 bg-gradient-to-r from-green-500 to-orange-500 mx-auto mt-4 sm:mt-6 rounded-full"></div>
         </div>
 
-        {/* Packages Grid - Fixed for iPad */}
+        {/* Packages Grid with Scroll Animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-12 sm:mb-16 md:mb-20">
           
           {/* Gold Package */}
-          <div className="group relative bg-white rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-green-200 overflow-hidden w-full flex flex-col">
+          <div 
+            ref={el => cardRefs.current[0] = el}
+            className={`group relative bg-white rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 hover:scale-105 border border-green-200 overflow-hidden w-full flex flex-col transform ${
+              visibleCards.includes(0) 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-12'
+            }`}
+            style={{
+              transitionDelay: visibleCards.includes(0) ? '100ms' : '0ms'
+            }}
+          >
             <div className="bg-gradient-to-r from-green-500 to-green-600 text-white text-center py-4 sm:py-6 relative flex-shrink-0">
               <div className="absolute inset-0 bg-black opacity-10"></div>
               <h2 className="relative text-xl sm:text-2xl md:text-3xl font-bold tracking-wide">GOLD</h2>
@@ -273,13 +317,23 @@ const Package = () => {
             </div>
           </div>
 
-          {/* Platinum Package - Fixed positioning */}
-          <div className="relative w-full flex flex-col">
+          {/* Platinum Package */}
+          <div 
+            ref={el => cardRefs.current[1] = el}
+            className="relative w-full flex flex-col"
+          >
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-600 to-orange-600 text-white text-xs sm:text-sm font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg z-20">
               RECOMMENDED
             </div>
             
-            <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border-2 border-orange-300 overflow-hidden mt-6 w-full flex flex-col h-full">
+            <div className={`group bg-white rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-105 border-2 border-orange-300 overflow-hidden mt-6 w-full flex flex-col h-full transform ${
+              visibleCards.includes(1) 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-12'
+            }`}
+            style={{
+              transitionDelay: visibleCards.includes(1) ? '300ms' : '0ms'
+            }}>
               <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-center py-4 sm:py-6 relative flex-shrink-0">
                 <div className="absolute inset-0 bg-black opacity-10"></div>
                 <h2 className="relative text-xl sm:text-2xl md:text-3xl font-bold tracking-wide">PLATINUM</h2>
@@ -322,7 +376,17 @@ const Package = () => {
           </div>
 
           {/* Diamond Package */}
-          <div className="group relative bg-white rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-orange-200 overflow-hidden w-full flex flex-col">
+          <div 
+            ref={el => cardRefs.current[2] = el}
+            className={`group relative bg-white rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 hover:scale-105 border border-orange-200 overflow-hidden w-full flex flex-col transform ${
+              visibleCards.includes(2) 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-12'
+            }`}
+            style={{
+              transitionDelay: visibleCards.includes(2) ? '500ms' : '0ms'
+            }}
+          >
             <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-4 sm:py-6 relative flex-shrink-0">
               <div className="absolute inset-0 bg-black opacity-10"></div>
               <h2 className="relative text-xl sm:text-2xl md:text-3xl font-bold tracking-wide">DIAMOND</h2>
@@ -424,7 +488,7 @@ const Package = () => {
         </div>
       </div>
 
-      {/* Custom Package Popup */}
+      {/* Custom Package Popup - Keeping original functionality */}
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
