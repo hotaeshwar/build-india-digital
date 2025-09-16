@@ -4,7 +4,6 @@ import logo from "../../assets/Images/bid-logo.png";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState({
-    hero: false,
     vision: false,
     mission: false,
     whyChoose: false
@@ -15,10 +14,9 @@ const About = () => {
       const scrollY = window.scrollY;
       
       setIsVisible(prev => ({
-        hero: scrollY > 50,
-        vision: scrollY > 200,
-        mission: scrollY > 400,
-        whyChoose: scrollY > 600
+        vision: scrollY > 100,
+        mission: scrollY > 300,
+        whyChoose: scrollY > 500
       }));
     };
 
@@ -30,22 +28,17 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section - Small size with navbar offset */}
-      <section className="relative bg-gradient-to-r from-green-600 to-orange-500 pt-24 pb-4 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-5"></div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className={`text-center transition-all duration-1000 ${
-            isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
-              About <span className="text-orange-200">Building India Digital</span>
-            </h1>
-            <p className="text-base md:text-lg text-white opacity-90 max-w-3xl mx-auto">
-              Empowering businesses through innovative digital marketing solutions
-            </p>
-          </div>
+      {/* Page Title */}
+      <div className="pt-20 pb-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-gray-800">
+            About <span className="text-green-600">Building India Digital</span>
+          </h1>
+          <p className="text-center text-gray-600 mt-4 text-lg">
+            Empowering businesses through innovative digital marketing solutions
+          </p>
         </div>
-      </section>
+      </div>
 
       {/* Main Content */}
       <section className="py-12 md:py-16">
@@ -134,7 +127,7 @@ const About = () => {
                     solutions that exceed expectations.
                   </p>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4">
                     <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-100 hover:bg-green-100 transition-colors duration-200">
                       <div className="h-8 w-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
                         <Users className="text-white w-4 h-4" />
