@@ -178,8 +178,8 @@ const Contact = () => {
                     For any enquiry, Call Us:
                   </h1>
                   <div className="text-sm sm:text-base">
-                    <p className="text-white py-2">9041499964</p>
-                    <p className="text-white py-2">9041499973</p>
+                    <p className="text-white py-2">+919041499964</p>
+                    <p className="text-white py-2">+919041499973</p>
                 </div>
                 </div>
               </div>
